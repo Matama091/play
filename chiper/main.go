@@ -3,6 +3,8 @@ package main
 import (
 	"bytes"
 	"crypto/cipher"
+
+	"github.com/codahale/aesnicheck"
 )
 
 func pad(data []byte, blockSize int) []byte {
@@ -20,6 +22,10 @@ func pad(data []byte, blockSize int) []byte {
 // 	}
 // 	return data[:len(data)-padSize]
 // }
+
+func Check() bool {
+	return aesnicheck.HasAESNI()
+}
 
 func EncryptWithCBC(block cipher.Block, iv []byte, data []byte) []byte {
 	data = pad(data, block.BlockSize())

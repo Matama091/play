@@ -34,7 +34,7 @@ func call(b *testing.B, dataSize int, f func(block cipher.Block, iv []byte, data
 
 func BenchmarkShortEncryptWithCBC(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, EncryptWithCBC)
+		_, err := call(b, 128, EncryptWithCBC)
 		if err != nil {
 			b.Error(err)
 		}
@@ -43,7 +43,7 @@ func BenchmarkShortEncryptWithCBC(b *testing.B) {
 
 func BenchmarkShortDecryptWithCBC(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, DecryptWithCBC)
+		_, err := call(b, 128, DecryptWithCBC)
 		if err != nil {
 			b.Error(err)
 		}
@@ -52,7 +52,7 @@ func BenchmarkShortDecryptWithCBC(b *testing.B) {
 
 func BenchmarkShortEncryptWithCFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, EncryptWithCFB)
+		_, err := call(b, 128, EncryptWithCFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -61,7 +61,7 @@ func BenchmarkShortEncryptWithCFB(b *testing.B) {
 
 func BenchmarkShortDecryptWithCFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, DecryptWithCFB)
+		_, err := call(b, 128, DecryptWithCFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -70,7 +70,7 @@ func BenchmarkShortDecryptWithCFB(b *testing.B) {
 
 func BenchmarkShortEncryptDecryptWithOFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, EncryptDecryptWithOFB)
+		_, err := call(b, 128, EncryptDecryptWithOFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -79,7 +79,7 @@ func BenchmarkShortEncryptDecryptWithOFB(b *testing.B) {
 
 func BenchmarkShortEncryptDecryptWithCTR(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 16, EncryptDecryptWithCTR)
+		_, err := call(b, 128, EncryptDecryptWithCTR)
 		if err != nil {
 			b.Error(err)
 		}
@@ -88,7 +88,7 @@ func BenchmarkShortEncryptDecryptWithCTR(b *testing.B) {
 
 func BenchmarkLongEncryptWithCBC(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, EncryptWithCBC)
+		_, err := call(b, 12800, EncryptWithCBC)
 		if err != nil {
 			b.Error(err)
 		}
@@ -97,7 +97,7 @@ func BenchmarkLongEncryptWithCBC(b *testing.B) {
 
 func BenchmarkLongDecryptWithCBC(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, DecryptWithCBC)
+		_, err := call(b, 12800, DecryptWithCBC)
 		if err != nil {
 			b.Error(err)
 		}
@@ -106,7 +106,7 @@ func BenchmarkLongDecryptWithCBC(b *testing.B) {
 
 func BenchmarkLongEncryptWithCFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, EncryptWithCFB)
+		_, err := call(b, 12800, EncryptWithCFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -115,7 +115,7 @@ func BenchmarkLongEncryptWithCFB(b *testing.B) {
 
 func BenchmarkLongDecryptWithCFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, DecryptWithCFB)
+		_, err := call(b, 12800, DecryptWithCFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -124,7 +124,7 @@ func BenchmarkLongDecryptWithCFB(b *testing.B) {
 
 func BenchmarkLongEncryptDecryptWithOFB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, EncryptDecryptWithOFB)
+		_, err := call(b, 12800, EncryptDecryptWithOFB)
 		if err != nil {
 			b.Error(err)
 		}
@@ -133,7 +133,7 @@ func BenchmarkLongEncryptDecryptWithOFB(b *testing.B) {
 
 func BenchmarkLongEncryptDecryptWithCTR(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := call(b, 2048, EncryptDecryptWithCTR)
+		_, err := call(b, 12800, EncryptDecryptWithCTR)
 		if err != nil {
 			b.Error(err)
 		}

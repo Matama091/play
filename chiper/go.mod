@@ -3,6 +3,7 @@ module main
 go 1.16
 
 require (
+	github.com/codahale/aesnicheck v0.0.0-20140702143623-349fcc471aac // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/google/uuid v1.3.0
