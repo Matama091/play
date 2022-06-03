@@ -1,34 +1,69 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"regexp"
-	"strings"
+	"os"
+	"strconv"
 )
 
-func main() {
-	var S string
-	fmt.Scan(&S)
-	var a, A int
+var sc = bufio.NewScanner(os.Stdin)
 
-	if !check_regexp(`[A-Z]`, S) || !check_regexp(`[a-b]`, S) {
-		fmt.Println("No")
-		return
-	}
-
-	for _, c := range S {
-		a = strings.Index(S, string(c))
-		A = strings.LastIndex(S, string(c))
-		fmt.Println(a, A, string(c))
-		if !(a == A) {
-			fmt.Println("No")
-			return
-		}
-	}
-	fmt.Println("Yes")
-
+func read() string {
+	sc.Scan()
+	return sc.Text()
 }
 
-func check_regexp(reg, str string) bool {
-	return regexp.MustCompile(reg).Match([]byte(str))
+func main() {
+	sc.Split(bufio.ScanWords)
+	var N, K int
+	fmt.Scan(&N, &K)
+
+	max := 0
+	A := make([]int, N)
+	B := make([]int, K)
+	for i := 0; i < N; i++ {
+		A[i], _ = strconv.Atoi(read())
+
+		if max < A[i] {
+			max = A[i]
+		}
+
+	}
+
+	for i := 0; i < K; i++ {
+		B[i], _ = strconv.Atoi(read())
+	}
+
+	count := 0
+	for i := 0; i < N; i++ {
+		if max == A[i] {
+			count++
+		}
+	}
+
+	number := make([]int, count)
+	c := 0
+	for i := 0; i < N; i++ {
+		if A[i] == max {
+			number[c] = i + 1
+			c++
+		}
+	}
+
+	var yes bool
+	for i := 0; i < count; i++ {
+		for k := 0; k < K; k++ {
+			if number[i] == B[k] {
+				yes = true
+				break
+			}
+		}
+	}
+
+	if yes {
+		fmt.Println("Yes")
+	} else {
+		fmt.Println("No")
+	}
 }
