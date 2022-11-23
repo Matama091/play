@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 )
 
 var sc = bufio.NewScanner(os.Stdin)
@@ -19,51 +18,70 @@ func main() {
 	var N, K int
 	fmt.Scan(&N, &K)
 
-	max := 0
+	B := make([][]int, K)
+	for i := 0; i < K; i++ {
+		B[i] = make([]int, i/K)
+	}
+
 	A := make([]int, N)
-	B := make([]int, K)
 	for i := 0; i < N; i++ {
-		A[i], _ = strconv.Atoi(read())
+		fmt.Scan(&A[i])
+		B[i%K] = append(B[i%K], A[i])
+	}
 
-		if max < A[i] {
-			max = A[i]
-		}
-
+	if K == 1 {
+		fmt.Println("Yes")
+		return
 	}
 
 	for i := 0; i < K; i++ {
-		B[i], _ = strconv.Atoi(read())
+		Quicksort(B[i])
 	}
 
-	count := 0
+	var C []int
 	for i := 0; i < N; i++ {
-		if max == A[i] {
-			count++
+		C = append(C, B[i%K][i/K])
+	}
+
+	if Comparison(C) {
+		fmt.Println("Yes")
+		return
+	}
+
+	fmt.Println("No")
+
+}
+
+func Comparison(A []int) bool {
+	for i := 0; i < len(A)-1; i++ {
+		if A[i] > A[i+1] {
+			return false
 		}
 	}
+	return true
+}
 
-	number := make([]int, count)
-	c := 0
-	for i := 0; i < N; i++ {
-		if A[i] == max {
-			number[c] = i + 1
-			c++
-		}
-	}
+func Quicksort(s []int) []int {
+	if len(s) == 1 || len(s) == 0 { //list size 0 or 1 is no sort
+		return s
+	} else {
+		pivot := s[0] //make a pivot first in the list
+		place := 0
 
-	var yes bool
-	for i := 0; i < count; i++ {
-		for k := 0; k < K; k++ {
-			if number[i] == B[k] {
-				yes = true
-				break
+		for j := 0; j < len(s)-1; j++ {
+			if s[j+1] < pivot { // if it is smaller than the pivot
+				s[j+1], s[place+1] = s[place+1], s[j+1]
+				place++
 			}
 		}
+		s[0], s[place] = s[place], s[0]
+
+		first := Quicksort(s[:place])
+		second := Quicksort(s[place+1:])
+		first = append(first, s[place])
+
+		first = append(first, second...)
+		return first
 	}
 
-	if yes {
-		fmt.Println("Yes")
-	} else {
-		fmt.Println("No")
-	}
 }
