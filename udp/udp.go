@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	fmt.Println("Server is running at 10.10.0.100:5000")
-	conn, err := net.ListenPacket("udp", "10.10.0.100:5000")
+	fmt.Println("Server is running at 10.0.3.89:5000")
+	conn, err := net.ListenPacket("udp", "10.0.3.89:5000")
 	if err != nil {
 		panic(err)
 	}
