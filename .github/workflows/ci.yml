@@ -9,9 +9,6 @@ defaults:
   run:
     working-directory: documents
 
-permissions:
-  contents: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
