@@ -9,7 +9,7 @@ theme:
     - navigation.tabs.sticky
 plugins:
   search:
-    lang: 'ja'
+    lang: "ja"
 extra:
   generator: false
 
