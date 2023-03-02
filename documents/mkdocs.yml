@@ -1,0 +1,31 @@
+site_name: My Docs
+theme:
+  name: material
+  palette:
+    primary: light green
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+plugins:
+  search:
+    lang: 'ja'
+extra:
+  generator: false
+
+nav:
+  - Home: index.md
+  - Functions:
+      - UDP: functions/udp.md
+use_directory_urls: false
+
+markdown_extensions:
+  - pymdownx.details
+  - mdx_truly_sane_lists:
+      nested_indent: 2
+  - attr_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
